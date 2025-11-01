@@ -23,10 +23,10 @@ poetry install
 ### Archive Extractor
 
 > [!NOTE]  
-> You can provide the following .env values in `.env`
+> You can provide the following env values in a `.env` file.
 
 ```toml
-ARCHIVE_EXTRACTOR_FOLDER=C:\Users\Maxime\Downloads
+ARCHIVE_EXTRACTOR_FOLDER=My/Path
 ```
 
 :::
@@ -38,4 +38,4 @@ poetry run extract
 The script will extract all files to an `Extracted` folder, which will be placed alongside your zip files.
 
 > [!NOTE]  
-> You'll be asked to paste the folder where the zip files are contained if you have not provided a .env file with the `ARCHIVE_EXTRACTOR_FOLDER` completed.
+> You'll be asked to paste the folder where the zip files are contained if you have not provided a .env file with the `ARCHIVE_EXTRACTOR_FOLDER` value.
