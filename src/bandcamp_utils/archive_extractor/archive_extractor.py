@@ -1,16 +1,23 @@
 from pathlib import Path
 import os
 import zipfile 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def read_folder_with_zip_files():
     """Read all zip files located in a set folder, and returns a tuple consisting of the dirpath, the various directories contained within, and the eventual files present."""
-    zip_files = os.walk(r"C:\Users\Maxime\Downloads")
+    if os.getenv("ARCHIVE_EXTRACTOR_FOLDER"):
+        folder = os.getenv("ARCHIVE_EXTRACTOR_FOLDER")
+    else:
+        folder = input("Enter the path to the folder containing the zip files: ")
+    zip_files = os.walk(folder)
     (dirpath, dirnames, filenames) = next(zip_files)
     return (dirpath, dirnames, filenames)
 
-def create_extract_folder() -> str:
+def create_extract_folder(dirpath: str) -> str:
     """Create an extract folder if it's not already created"""
-    extract_folder = r"C:\Users\Maxime\Downloads\Extracted"
+    extract_folder = os.path.join(dirpath, "Extracted")
     Path(extract_folder).mkdir(parents=True, exist_ok=True)
     return extract_folder
 
@@ -42,5 +49,5 @@ def extract_zip_files_to_folder(dirpath: str, extract_folder: str, filenames: li
 
 def main():
     (dirpath, dirnames, filenames) = read_folder_with_zip_files()
-    extract_folder = create_extract_folder()
+    extract_folder = create_extract_folder(dirpath=dirpath)
     extract_zip_files_to_folder(extract_folder=extract_folder, dirpath=dirpath,     filenames=filenames)
