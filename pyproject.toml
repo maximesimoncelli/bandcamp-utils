@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "bandcamp-utils"
+version = "0.1.0"
+description = "A set of useful bandcamp tools"
+authors = ["Maxime Simoncelli <maximesimoncelli@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+extract = "bandcamp_utils.archive_extractor:main"
